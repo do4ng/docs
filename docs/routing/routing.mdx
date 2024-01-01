@@ -1,0 +1,74 @@
+## File Structure
+
+- `docs.ts`: Documentation Configurations
+- `config.ts`: Page Configurations
+- `/components/index.tsx`: Main page.
+- ~~`/app`: Pages~~
+- ~~`/components`: Components~~
+- ~~`/lib`: Libraries~~
+- ~~`/mdx`: Markdown compiler.~~
+
+## /docs.ts
+
+```ts
+export interface Docs {
+  // name
+  name: string;
+  // description
+  description: string;
+
+  // repository link
+  github: string;
+
+  // buttons in main page.
+  index: {
+    content: string;
+    href: string;
+  }[];
+
+  // header
+  header: Array<
+    | {
+        // popover button
+        type: 'popover';
+        title: string;
+        children: Array<{
+          title: string;
+          href: string;
+          // ** icon classname **
+          // https://remixicon.com/
+          icon: string;
+          description?: string;
+        }>;
+      }
+    | {
+        // link button
+        title: string;
+        href: string;
+        type: 'link';
+      }
+  >;
+}
+```
+
+## /config.ts
+
+```ts
+export type Post = Record<string, string>;
+
+export interface Category {
+  name: string;
+  // example: [{hello: "Hello"}, {world: "World"}]
+  posts: Post[];
+}
+
+export interface Config {
+  // name
+  title: string;
+  category: Category[];
+  // directory (default: Config.title)
+  directory?: string;
+}
+```
+
+> Note: If the category name and post title are the same, the button will be replaced with a category toggle button.

@@ -1,0 +1,17 @@
+This template uses `@mdx-js/mdx` to compile markdown.
+
+To add plugins, edit `/mdx/compile.ts`.
+
+```ts {5}
+// ...
+const options: CompileOptions = {
+  format: 'md',
+  outputFormat: 'function-body',
+  remarkPlugins: [remarkGfm], // edit here!
+  development: false,
+  rehypePlugins: [
+    // ...
+  ],
+};
+// ...
+```
