@@ -1,9 +1,12 @@
 'use client';
 
+/* eslint-disable import/no-cycle */
+
 import { usePathname } from 'next/navigation';
 import NextTopLoader from 'nextjs-toploader';
 
 import '@/styles/global.scss';
+import { ThemeSelector } from '@/components/theme-selector';
 import config from '@/config';
 import './style.scss';
 import './[category]/[slug]/post.scss';
@@ -11,7 +14,7 @@ import './[category]/[slug]/style.scss';
 import { Header } from './header';
 import { CategoryMenu } from './[category]/[slug]/category';
 
-function toggleTheme(to: 'dark' | 'white' = 'dark') {
+export function toggleTheme(to: 'dark' | 'white' = 'dark') {
   if (typeof window === 'undefined') return;
   document.querySelector('html').setAttribute('class', to);
 }
@@ -21,7 +24,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const isDocs = path === 'docs' || path === 'plugins';
 
   if (typeof window !== 'undefined') {
-    toggleTheme((localStorage.getItem('theme') as any) || 'white');
+    toggleTheme((localStorage.getItem('theme') as any) || 'dark');
   }
 
   const target = config.find((category) => category.title.toLowerCase() === path);
@@ -52,19 +55,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   </div>
                   <div className="menu-bottom">
                     <i className="ri-sun-line"></i>
-                    <select
-                      onChange={(e) => {
-                        localStorage.setItem('theme', e.target.value);
-                        toggleTheme(e.target.value as any);
-                      }}
-                    >
-                      <option key="dark" value="dark">
-                        Dark
-                      </option>
-                      <option key="white" value="white">
-                        White
-                      </option>
-                    </select>
+                    <ThemeSelector></ThemeSelector>
                   </div>
                 </div>
                 <div className="content">{children}</div>
