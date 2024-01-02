@@ -6,7 +6,7 @@ import { join } from 'path';
 
 import './style.scss';
 
-import config from '@/blog/config';
+import config from '@/blog';
 import { compileMdx } from '@/mdx/compile';
 import { Content } from '@/mdx/content';
 
@@ -41,15 +41,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   );
   */
 
-  if (process.env.NODE_ENV === 'development') {
-    raw = readFileSync(join(process.cwd(), 'blog', `${target.date}.mdx`)).toString();
-  } else {
-    const res = await fetch(
-      `https://raw.githubusercontent.com/zely-js/website/main/frontend/blog/${target.date}.mdx`,
-      { cache: 'force-cache' },
-    );
-    raw = await res.text();
-  }
+  raw = readFileSync(join(process.cwd(), 'blog', `${target.date}.mdx`)).toString();
 
   const compiled = await compileMdx(raw);
 

@@ -63,5 +63,10 @@ export default {
       type: 'link',
       href: '/docs/markdown',
     },
+    {
+      title: 'Blog',
+      type: 'link',
+      href: '/blog',
+    },
   ],
 } as Docs;
