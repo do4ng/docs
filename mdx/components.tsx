@@ -14,6 +14,7 @@ const langsIcons = {
   txt: 'file-text-line',
   bash: 'terminal-box-line',
   sh: 'terminal-box-line',
+  md: 'markdown-line',
 };
 
 const langs = {
@@ -27,6 +28,7 @@ const langs = {
   bash: 'Terminal',
   sh: 'Terminal',
   rs: 'Rust',
+  md: 'Markdown',
 };
 
 export const components = {
@@ -45,6 +47,7 @@ export const components = {
   h4: (props: any) => <h4 {...props}></h4>,
   h5: (props: any) => <h5 {...props}></h5>,
   h6: (props: any) => <h6 {...props}></h6>,
+
   div: (props: any) => {
     if (props['data-rehype-pretty-code-fragment'] === '') {
       if (props.children[0]?.props['data-rehype-pretty-code-title'] !== '') {

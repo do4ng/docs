@@ -20,21 +20,21 @@ a.btn {
 
 button.btn:hover,
 a.btn:hover {
-  background-color: rgba(30, 167, 253, 0.14) !important;
-  color: #1ea7fd;
+  background-color: var(--primary-100-50) !important;
+  color: var(--primary-100);
 
   i::before {
-    color: #1ea7fd;
+    color: var(--primary-100);
   }
 }
 
 a.btn:focus,
 button.btn:focus {
-  background-color: rgba(30, 167, 253, 0.14) !important;
-  color: #1ea7fd;
+  background-color: var(--primary-100-50) !important;
+  color: var(--primary-100);
 
   i::before {
-    color: #1ea7fd;
+    color: var(--primary-100);
   }
   i::before {
     display: inline-block;
