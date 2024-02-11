@@ -103,3 +103,51 @@ button.btn:focus {
   visibility: visible;
   opacity: 1;
 }
+
+.box {
+  padding: 7px 15px;
+  border-radius: 8px;
+
+  margin: 30px 0;
+
+  p {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--text-100);
+  }
+
+  p.box-title {
+    font-size: 0.975rem;
+    font-weight: bold;
+  }
+}
+
+.dark {
+  .box-info {
+    background-color: #4e4e4e42;
+  }
+  .box-warning {
+    background-color: #7a77464b;
+  }
+  .box-error {
+    background-color: #8a424242;
+  }
+  .box-tip {
+    background-color: #4d5d924b;
+  }
+}
+
+.white {
+  .box-info {
+    background-color: #4e4e4e18;
+  }
+  .box-warning {
+    background-color: #837c0025;
+  }
+  .box-error {
+    background-color: #8b181821;
+  }
+  .box-tip {
+    background-color: #00229221;
+  }
+}

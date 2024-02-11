@@ -11,6 +11,7 @@ import { compileMdx } from '@/mdx/compile';
 import ScrollTop from '@/lib/scrolltotop';
 import { Content } from '@/mdx/content';
 import { TableOfContents } from './tableofcontents';
+import docs from '@/docs';
 
 export async function generateStaticParams() {
   const pages = [];
@@ -101,7 +102,7 @@ export default async function Page({
   return (
     <>
       <ScrollTop></ScrollTop>
-      <title>{`${Object.values(target as any)[0]} - zely`}</title>
+      <title>{`${Object.values(target as any)[0]} - ${docs.name}`}</title>
       <div className="content-flex">
         <div className="post">
           <div className="intro">

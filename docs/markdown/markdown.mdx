@@ -28,11 +28,11 @@ Markdown is **Awesome!**
 
 ## HTML code
 
-```html
-<span style="color: red">dangerous</span>
+```mdx
+<span style={{ color: 'red' }}>dangerous</span>
 ```
 
-<span style="color: red">dangerous</span>
+<span style={{ color: 'red' }}>dangerous</span>
 
 ## Table
 
@@ -47,3 +47,21 @@ Markdown is **Awesome!**
 | --- | --- | --- |
 | no  | yes | no  |
 | yes | no  | yes |
+
+## Custom Components
+
+There are custom components that can be used without separate import.
+
+### Box
+
+```mdx
+<Box type="warning">This is warning</Box>
+<Box type="info">This is info</Box>
+<Box type="error">This is error</Box>
+<Box type="tip">This is tip</Box>
+```
+
+<Box type="warning">This is warning</Box>
+<Box type="info">This is info</Box>
+<Box type="error">This is error</Box>
+<Box type="tip">This is tip</Box>
