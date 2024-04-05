@@ -7,6 +7,7 @@ import { scrollTop } from './scrolltop';
 
 export default function scrollToTop() {
   useEffect(() => {
+    console.log('scroll top');
     scrollTop();
   }, []);
   return null;

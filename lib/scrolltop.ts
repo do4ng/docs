@@ -1,3 +1,3 @@
 export function scrollTop() {
-  document.querySelector('.content').scrollTo({ top: 0 });
+  document.querySelector('.content')?.scrollTo({ top: 0, behavior: 'smooth' });
 }

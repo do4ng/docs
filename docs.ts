@@ -25,8 +25,9 @@ export interface Docs {
 }
 
 export default {
-  name: 'Documentation',
+  name: '@do4ng/docs',
   description: 'Beautiful, Simple<br/>Documentation Template',
+  github: 'https://github.com/do4ng/docs',
   index: [
     {
       content: 'Overview',

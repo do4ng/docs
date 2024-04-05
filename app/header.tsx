@@ -1,10 +1,14 @@
 'use client';
 
+/* eslint-disable import/no-cycle */
+
 import 'remixicon/fonts/remixicon.css';
 
 import Link from 'next/link';
 import { Popover } from '@/components/popper';
 import docs from '@/docs';
+import { TextLabel } from '@/components/label';
+import { ThemeSelector } from '@/components/theme-selector';
 
 export function Header() {
   return (
@@ -12,7 +16,7 @@ export function Header() {
       <header className="header-container text">
         <div className="header">
           <Link className="item-1 logo" href="/">
-            {docs.name}
+            {docs.name} <span className="docs-icon">Docs</span>
           </Link>
 
           <div className="item-2">
@@ -49,13 +53,24 @@ export function Header() {
           </div>
 
           <div className="item-3">
-            <Link
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://github.com/zely-js/zely"
-            >
-              <i className="ri-github-fill"></i>
-            </Link>
+            <TextLabel text="What's new?">
+              <Link href="/changelog">
+                <p>
+                  <i className="ri-receipt-line"></i>
+                </p>
+              </Link>
+            </TextLabel>
+            <ThemeSelector></ThemeSelector>
+            <TextLabel text="github">
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                href={docs.github}
+                className="big-icon"
+              >
+                <i className="ri-github-fill"></i>
+              </Link>
+            </TextLabel>
           </div>
         </div>
       </header>

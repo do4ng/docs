@@ -4,10 +4,16 @@ import { useParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import config, { Category } from '@/config';
 
-export function CategoryMenu({ category }: { category: Category }) {
+export function CategoryMenu({
+  category,
+  hidden,
+}: {
+  category: Category;
+  hidden: boolean;
+}) {
   const params = useParams();
 
   let targetcategory: string | null = null;
@@ -22,11 +28,14 @@ export function CategoryMenu({ category }: { category: Category }) {
     });
   });
 
-  const [hide, setHide] = useState(false);
+  const [hide, setHide] = useState(hidden);
 
   const router = useRouter();
-
   const CategoryName = category.name.toLowerCase().replace(/ /g, '-');
+
+  useEffect(() => {
+    router.prefetch(`/${params.category}/${CategoryName}`);
+  }, [router, params, CategoryName]);
 
   return (
     <div className={`category ${hide ? 'hide' : ''}`} key={category.name}>
@@ -39,7 +48,7 @@ export function CategoryMenu({ category }: { category: Category }) {
               ).length !== 0
             ) {
               setHide(false);
-              router.push(`/docs/${CategoryName}`);
+              router.push(`/${params.category}/${CategoryName}`);
             } else {
               setHide(!hide);
             }
@@ -67,7 +76,7 @@ export function CategoryMenu({ category }: { category: Category }) {
               <></>
             ) : (
               <Link
-                href={`/docs/${Object.keys(post)[0]}`}
+                href={`/${params.category}/${Object.keys(post)[0]}`}
                 className={`btn ${params?.slug === Object.keys(post)[0] ? 'active' : ''}`}
               >
                 {Object.values(post)[0]}

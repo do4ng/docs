@@ -1,0 +1,70 @@
+In zely, you can expand the server through plugins.
+
+## Basic Plugin
+
+There is a simple plugin that prints the URL from request.
+
+```ts {3-12}
+export function myPlugin() {
+  return {
+    name: 'my-plugin',
+
+    // You can access the server
+    // by adding middleware to the zely server through server().
+    server(server) {
+      server.use((req, res, next) => {
+        console.log(req.url);
+        next();
+      });
+    },
+  };
+}
+```
+
+And regist the plugin to configure file.
+
+```ts [title="zely.config.ts"]
+import { myPlugin } from './myplugin';
+
+export default defineConfig({
+  plugins: [myPlugin()],
+});
+```
+
+Now, when you start the app,
+the URL from request will be displayed for each request!
+
+## Plugin Options
+
+### `plugin.name`
+
+This is the name of the plugin. This is useful for debugging.
+
+### `plugin.config`
+
+You can change the settings.  
+This value will be executed before the server starts.
+
+### `plugin.server`
+
+You can expand your server by receiving a server instance.
+
+```ts
+return {
+  name: 'simple-plugin',
+  server(server) {
+    server.use((req, res, next) => next());
+  },
+};
+```
+
+<Box type="info">
+
+zely executes middleware in the following order before showing the page:
+
+1. `plugin.server`
+2. [middleware extending `req`, `res`](https://github.com/zely-js/zely/blob/zely3/packages/zely-js-core/src/middlewares/support.ts)
+3. `config.middlewares` or [middleware in a specific directory](/docs/auto)
+4. [pages middleware (core middleware showing the pages)](https://github.com/zely-js/zely/blob/zely3/packages/zely-js-core/src/controller/index.ts#L237)
+
+</Box>

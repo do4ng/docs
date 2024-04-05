@@ -33,7 +33,13 @@ const langs = {
 
 export const components = {
   h1: (props: any) => <h1 {...props}></h1>,
-  a: (props: any) => <Link {...props} prefetch={false}></Link>,
+  a: (props: any) => {
+    if (props.href.startsWith('http')) {
+      return <Link {...props} target="_blank" passHref={true}></Link>;
+    }
+
+    return <Link {...props} prefetch={false}></Link>;
+  },
   h2: (props: any) => {
     const id = props.children.toString().replace(/ /g, '-').toLowerCase();
     return (
@@ -48,8 +54,8 @@ export const components = {
   h5: (props: any) => <h5 {...props}></h5>,
   h6: (props: any) => <h6 {...props}></h6>,
 
-  div: (props: any) => {
-    if (props['data-rehype-pretty-code-fragment'] === '') {
+  figure: (props: any) => {
+    if (props['data-rehype-pretty-code-figure'] === '') {
       if (props.children[0]?.props['data-rehype-pretty-code-title'] !== '') {
         const lang = props.children.props['data-language'];
         const [copy, setCopy] = useState('copy');
@@ -89,7 +95,10 @@ export const components = {
         );
       }
     }
+    return <div {...props}></div>;
+  },
 
+  figcaption: (props: any) => {
     if (props['data-rehype-pretty-code-title'] === '') {
       const lang = props['data-language'];
       const [copy, setCopy] = useState('copy');
@@ -137,12 +146,13 @@ export const components = {
   ),
 
   Box: (props: any) => {
-    console.log(props);
+    console.log(props.children);
 
     return (
       <div className={`box box-${props.type || 'info'}`}>
         <p className="box-title">{(props.type || 'info').toUpperCase()}</p>
-        <p>{props.children}</p>
+
+        {props.children}
       </div>
     );
   },

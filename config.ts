@@ -3,6 +3,7 @@ export type Post = Record<string, string>;
 export interface Category {
   name: string;
   posts: Post[];
+  hidden?: boolean;
 }
 
 export interface Config {
