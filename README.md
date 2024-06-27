@@ -1,7 +1,7 @@
-# [zely.vercel.app](https://zely.vercel.app)
+# Documentation
 
-documentation for zely3
+This document template is based on nextjs.
 
-[zely@2](https://zely2.netlify.app)
+## Installation
 
-[zely@1](https://zely.netlify.app)
+[See installation guide](https://docs-livid-sigma.vercel.app/docs/installation)
