@@ -8,13 +8,17 @@ export interface Category {
 
 export interface Config {
   title: string;
+  icon?: string;
   category: Category[];
   directory?: string;
+  target: string;
 }
 
 export default [
   {
     title: 'docs',
+    icon: 'book-open-line',
+    target: 'overview',
     category: [
       {
         name: 'Overview',
