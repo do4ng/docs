@@ -1,3 +1,7 @@
+/* eslint-disable function-paren-newline */
+/* eslint-disable no-confusing-arrow */
+/* eslint-disable no-return-assign */
+
 'use client';
 
 import Link from 'next/link';
@@ -137,6 +141,7 @@ export const components = {
     }
     return <div {...props}></div>;
   },
+
   pre: (props: any) => (
     <>
       <div className="code-block" style={props.style}>
@@ -145,15 +150,48 @@ export const components = {
     </>
   ),
 
-  Box: (props: any) => {
+  Box: (props: any) => (
+    <div className={`box box-${props.type || 'info'}`}>
+      <p className="box-title">{(props.type || 'info').toUpperCase()}</p>
+
+      {props.children}
+    </div>
+  ),
+
+  Tabs: (props: any) => {
+    props = { ...props };
+    const tabs = props.children?.map((child) => child?.props?.id);
+
+    const [active, setActive] = useState(tabs[0]);
+
     console.log(props.children);
 
     return (
-      <div className={`box box-${props.type || 'info'}`}>
-        <p className="box-title">{(props.type || 'info').toUpperCase()}</p>
-
-        {props.children}
-      </div>
+      <>
+        <div className="tabs">
+          <div className="tab-id">
+            {tabs?.map((tab) => (
+              <button
+                key={tab}
+                className={`tab-item text-inter ${active === tab ? 'active' : ''}`}
+                onClick={() => setActive(tab)}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+          <div className="tab-contents">
+            {props.children?.map((child) =>
+              child?.props?.id === active ? child.props?.children : null,
+            )}
+          </div>
+        </div>
+      </>
     );
   },
+  TabItem: (props: any) => (
+    <>
+      <div className="tab-content" {...props}></div>
+    </>
+  ),
 };

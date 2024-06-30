@@ -1,6 +1,7 @@
 import { compile, CompileOptions } from '@mdx-js/mdx';
 import remarkGfm from 'remark-gfm';
 import rehypePrettyCode from 'rehype-pretty-code';
+import rehypeTabularCode from 'rehype-tabular-code';
 
 export const compileMdx = async (content: string): Promise<string> => {
   if (typeof window !== 'undefined') throw Error('compileMdx should run on server only');
@@ -11,6 +12,17 @@ export const compileMdx = async (content: string): Promise<string> => {
     remarkPlugins: [remarkGfm],
     development: false,
     rehypePlugins: [
+      [
+        rehypeTabularCode,
+        {
+          tagNames: {
+            contentContainer: 'section',
+          },
+          classNames: {
+            tab: 'code-tab',
+          },
+        },
+      ],
       [
         // @ts-ignore
         rehypePrettyCode,
