@@ -1,7 +1,8 @@
 'use client';
 
-import { Content } from '@/mdx/content';
 import { useState } from 'react';
+
+import { Content } from '@/mdx/content';
 
 export function ChangelogPost(props: { content: string; closed: boolean }) {
   const [closed, setClosed] = useState(props.closed);

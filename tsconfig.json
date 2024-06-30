@@ -3,6 +3,7 @@
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "compilerOptions": {
     "paths": {
+      "@/mdx/*": ["./lib/mdx/*"],
       "@/*": ["./*"]
     },
     "forceConsistentCasingInFileNames": true,

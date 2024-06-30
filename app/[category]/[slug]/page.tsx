@@ -7,8 +7,8 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 
 import { Category, default as parents } from '@/config';
-import { compileMdx } from '@/mdx/compile';
 import ScrollTop from '@/lib/scrolltotop';
+import { compileMdx } from '@/mdx/compile';
 import { Content } from '@/mdx/content';
 import { TableOfContents } from './tableofcontents';
 

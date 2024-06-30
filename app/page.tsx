@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 
-import Index from '@/components';
+import Index from '@/app/components';
 import Link from 'next/link';
 import './style.scss';
 import docs from '@/docs';

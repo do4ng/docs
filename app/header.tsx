@@ -5,10 +5,10 @@
 import 'remixicon/fonts/remixicon.css';
 
 import Link from 'next/link';
-import { Popover } from '@/components/popper';
+import { Popover } from '@/app/components/popper';
 import docs from '@/docs';
-import { TextLabel } from '@/components/label';
-import { ThemeSelector } from '@/components/theme-selector';
+import { TextLabel } from '@/app/components/label';
+import { ThemeSelector } from '@/app/components/theme-selector';
 
 export function Header() {
   return (
